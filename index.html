@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Cam</title>
+  <meta http-equiv="refresh" content="60">
+  <style>
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #00ffcc;
+    }
+
+    .frame {
+      display: inline-block;
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 3px solid #00ffcc;
+    }
+
+    .timestamp {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>📡 Live Cam</h1>
+  <div class="frame">
+    <img id="snapshot" src="latest.jpg" alt="Live Camera Snapshot">
+    <div class="timestamp">Updated every minute</div>
+  </div>
+
+  <script>
+    const img = document.getElementById("snapshot");
+
+    function refreshImage() {
+      const timestamp = new Date().getTime();
+      img.src = `latest.jpg?cb=${timestamp}`;
+    }
+
+    // Initial load
+    refreshImage();
+
+    // Refresh every 60 seconds
+    setInterval(refreshImage, 60000);
+  </script>
+</body>
+</html>
